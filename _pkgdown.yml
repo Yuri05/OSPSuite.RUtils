@@ -11,44 +11,81 @@ template:
   bootstrap: 5
 
 development:
-  mode: devel
+  mode: auto
 
 reference:
 
-  - title: Enum helpers
+  - title: Helpers
+
+  - subtitle: Enum helpers
     desc: Utilities to work with enum objects
     contents:
       - contains("enum")
 
-  - title: Validation helpers
+  - subtitle: Validation helpers
     desc: Check or validate a given assertion
     contents:
       - matches("^is|^has|^validate")
 
-  - title: Conditional value assignment helpers
+  - subtitle: Validation spec constructors
+    desc: Create specification objects for option validation
+    contents:
+      - integerOption
+      - numericOption
+      - characterOption
+      - logicalOption
+
+  - subtitle: Conditional value assignment helpers
     desc: Compute and assign value conditionally
     contents:
       - starts_with("^if")
 
-  - title: Formatting helpers
+  - subtitle: Formatting helpers
     desc: ~
     contents:
       - matches("^format")
 
-  - title: R6 helpers
-    desc: Utilities to work with R6 objects
+  - subtitle: Printing helpers
     contents:
-      - Printable
+      - has_concept("print functions")
 
-  - title: Miscellaneous
+  - subtitle: Math helpers
     contents:
-      - "`%||%`"
-      - matches("^to")
-      - messages
-      - objectCount
-      - flattenList
+      - logSafe
 
   - title: Package settings
     contents:
       - getOSPSuiteUtilsSetting
       - ospsuiteUtilsSettingNames
+
+  - title: Deprecated Features
+    contents:
+      - Printable
+
+  - title: Logger
+    desc: Utilities for recording logs
+    contents:
+      - getLogFolder
+      - setLogFolder
+      - logDebug
+      - logInfo
+      - logWarning
+      - logError
+      - cliFormat
+      - logCatch
+      - setInfoMasking
+      - setWarningMasking
+      - setErrorMasking
+
+  - title: Miscellaneous
+    contents:
+      - matches("^to")
+      - messages
+      - objectCount
+      - flattenList
+      - logSafe
+      - foldSafe
+      - tic
+      - toc
+      - timeStamp
+

@@ -17,17 +17,17 @@ B <- data.frame(
 test_that("isOfType doesn't work when `nullAllowed` argument is not logical", {
   expect_error(
     isOfType(NULL, nullAllowed = "a"),
-    "argument 'nullAllowed' is of type 'character', but expected 'logical'"
+    "(argument).*(nullAllowed).*(is of type).*(character).*(but expected).*(logical)"
   )
 
   expect_error(
     isOfType(NULL, nullAllowed = 1),
-    "argument 'nullAllowed' is of type 'double', but expected 'logical'"
+    "(argument).*(nullAllowed).*(is of type).*(double).*(but expected).*(logical)"
   )
 
   expect_error(
     isOfType(NULL, nullAllowed = 0L),
-    "argument 'nullAllowed' is of type 'integer', but expected 'logical'"
+    "(argument).*(nullAllowed).*(is of type).*(integer).*(but expected).*(logical)"
   )
 })
 
@@ -38,10 +38,13 @@ test_that("isOfType returns `TRUE` when values are of expected type", {
   expect_true(isOfType(logical(), "logical"))
   expect_true(isOfType(NULL, nullAllowed = TRUE))
 
-  Person <- R6::R6Class("Person", list(
-    name = NULL,
-    initialize = function(name) self$name <- name
-  ))
+  Person <- R6::R6Class(
+    "Person",
+    list(
+      name = NULL,
+      initialize = function(name) self$name <- name
+    )
+  )
 
   Jack <- Person$new(name = "Jack")
   Jill <- Person$new(name = "Jill")
@@ -68,7 +71,7 @@ test_that("validateIsOfType throws an error when type is unexpected", {
 })
 
 test_that("validateIsOfType throws expected error message when type is unexpected", {
-  errorMessageIsOfType <- "argument 'A' is of type 'data.frame', but expected 'character'!"
+  errorMessageIsOfType <- "(argument).*(A).*(is of type).*(data.frame).*(but expected).*(character)"
   expect_error(validateIsOfType(A, "character"), errorMessageIsOfType)
 })
 
@@ -97,11 +100,7 @@ test_that("validateIsInteger produces errors if not integers", {
 test_that("validateIsInteger produces expected error message when validating that a string is an integer", {
   expect_error(
     validateIsInteger("s"),
-    messages$errorWrongType(
-      objectName = "\"s\"",
-      expectedType = "integer",
-      type = "character"
-    )
+    "(argument).*(s).*(is of type).*(character).*(but expected).*(integer)"
   )
 })
 
@@ -111,8 +110,7 @@ test_that("validateIsInteger produces errors if a factor is provided", {
 
   expect_error(
     validateIsInteger(df$numCol),
-    "argument 'df$numCol' is of type 'factor', but expected 'integer'!",
-    fixed = TRUE
+    "(argument).*(df\\$numCol).*(is of type).*(factor).*(but expected).*(integer)"
   )
 })
 
@@ -150,8 +148,7 @@ test_that("validateIsNumeric produces errors if a factor is provided", {
 
   expect_error(
     validateIsNumeric(df$numCol),
-    "argument 'df$numCol' is of type 'factor', but expected 'numeric, or integer'!",
-    fixed = TRUE
+    "(argument).*(df\\$numCol).*(is of type).*(factor).*(but expected).*(numeric/integer)"
   )
 })
 

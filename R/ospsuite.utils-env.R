@@ -18,6 +18,17 @@ ospsuiteUtilsEnv$suiteName <- "Open Systems Pharmacology"
 # default values for the `formatNumerics()` helper function
 ospsuiteUtilsEnv$formatNumericsDigits <- 2L
 
+# Small value added to zero when calculating log
+ospsuiteUtilsEnv$LOG_SAFE_EPSILON <- 1e-20
+
+# Logging settings, masking corresponds to patterns logged but not displayed on console
+ospsuiteUtilsEnv$logging <- list(
+  folder = NULL,
+  errorMasking = NULL,
+  warningMasking = NULL,
+  infoMasking = NULL
+)
+
 #' Names of the settings stored in `ospsuiteEnv`. Can be used with
 #' `getOSPSuiteUtilsSetting()`
 #'
